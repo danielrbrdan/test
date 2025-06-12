@@ -1,0 +1,20 @@
+name: Readme sync action
+
+on:
+  schedule:
+    - cron: "0 17 * * *"
+  workflow_dispatch:
+
+jobs:
+  rdme-openapi:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Install rdme CLI globally
+        run: npm install -g rdme
+
+      - name: Upload OpenAPI from URL
+        run: echo "y" | rdme openapi upload --key=${{ secrets.README_API_KEY }} --branch=1.0 https://external-api.prod.baseerp.com.br/v3/api-docs
