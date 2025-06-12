@@ -2,7 +2,7 @@ name: Readme sync action
 
 on:
   schedule:
-    # - cron: "0 20 * * 1-5"
+    - cron: "0 20 * * 1-5"
     # - cron: "0 13 * * 1-5" # 09:25 BRT (UTC-3)
     # - cron: "*/5 * * * *"
   workflow_dispatch:
