@@ -2,7 +2,8 @@ name: Readme sync action
 
 on:
   schedule:
-    - cron: "0 17 * * *"
+    # - cron: "0 20 * * *"
+    - cron: "25 12 * * *"  # 09:25 BRT (UTC-3)
   workflow_dispatch:
 
 jobs:
@@ -10,13 +11,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install rdme CLI globally
+      - name: Install rdme
         run: npm install -g rdme
 
-      - name: Download OpenAPI JSON
+      - name: Download external OpenAPI JSON
         run: curl -o swagger.json https://external-api.prod.baseerp.com.br/v3/api-docs
 
       - name: Upload to ReadMe
