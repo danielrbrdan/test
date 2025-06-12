@@ -16,5 +16,8 @@ jobs:
       - name: Install rdme CLI globally
         run: npm install -g rdme
 
-      - name: Upload OpenAPI from URL
-        run: echo "y" | rdme openapi upload --key=${{ secrets.README_API_KEY }} --branch=1.0 https://external-api.prod.baseerp.com.br/v3/api-docs
+      - name: Download OpenAPI JSON
+        run: curl -o swagger.json https://external-api.prod.baseerp.com.br/v3/api-docs
+
+      - name: Upload to ReadMe
+        run: echo "y" | rdme openapi upload swagger.json --key=${{ secrets.README_API_KEY }} --branch=1.0 --slug=external-apiprodbaseerpcombr-v3api-docs.json
